@@ -7,4 +7,8 @@ homework2: file/folder operation1
     find file/folder which size more than 200MB  under c:\windows\system32\
     find file/folder which size more than 100MB  under /etc
 
-homework3: 
+homework3: file/folder operation2
+    calculate how many words in book: Pricess White Flame
+    find the most largest paragraph
+    find top 5 word.
+
