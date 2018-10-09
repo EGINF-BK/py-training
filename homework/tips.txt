@@ -1,0 +1,10 @@
+homework1: analyse access.log
+	calculate PV&&UV (understand PV\UV first if be not aware of them)
+	list the top5 resource 
+	website available rate.
+
+homework2: file/folder operation1
+    find file/folder which size more than 200MB  under c:\windows\system32\
+    find file/folder which size more than 100MB  under /etc
+
+homework3: 
