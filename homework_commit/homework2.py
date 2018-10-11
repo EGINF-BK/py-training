@@ -17,8 +17,13 @@ def getdirsize(file_path):
 
 def listdir(file_path):
     for root,dirs,files in os.walk(file_path):
-        size = getdirsize(root)
-        if round(float(size)/(1024*1024),2)>200:
-            print root,str(round(float(size)/(1024*1024),2))+'MB'
+        #print root
+        for file in files:
+            size_file = getdirsize(path.join(root, file))
+            if round(float(size_file) / (1024 * 1024), 2) > 200:
+                print path.join(root, file), str(round(float(size_dir) / (1024 * 1024), 2)) + 'MB'
+        size_dir = getdirsize(root)
+        if round(float(size_dir)/(1024*1024),2) > 200:
+            print root,str(round(float(size_dir)/(1024*1024),2))+'MB'
 listdir(file_path)
 
