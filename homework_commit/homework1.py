@@ -7,34 +7,31 @@ current_name = 'homework1'
 def load_file_path(file_name):
     current_path = path.abspath(current_name)
     father_path = path.abspath(path.dirname(current_path)+path.sep+'..')
-    file_path = 'homework\\'+file_name
-    return path.join(father_path,file_path)
+    return path.join(father_path,'homework',file_name)
 
 
-def open_file(file_path):
+def open_file(file_path,n):
     total_list = []
     f = open(file_path,'r')
-    data = f.readlines()
-    f.close()
-    for line in data:
-        line = line.strip('\n')
-        total_list.append(line.split(' '))
+    with open(file_path ,'r') as f:
+        for line in f.readlines():
+            total_list.append(line.strip('\n').split()[n])
     return total_list
 
 
 def calculate_pv_uv(file_path):
-    data = open_file(file_path)
-    pv = [item[0] for item in data]
+    data = open_file(file_path,0)
+    pv = [item for item in data]
     print 'PV:',len(pv)
     print 'UV:',len(set(pv))
 
 
 def top_resource(file_path,num):
-    data = open_file(file_path)
+    data = open_file(file_path,6)
     resource_dict = {}
     resource_total = []
     for i in range(len(data)):
-        resource_single = filter(None, data[i][6].split('/'))
+        resource_single = filter(None, data[i].split('/'))
         if resource_single:
             resource_total.append(resource_single[0])
     for item in set(resource_total):
@@ -48,17 +45,17 @@ def top_resource(file_path,num):
 
 
 def web_availabe_rate(file_path):
-    data = open_file(file_path)
+    data = open_file(file_path,8)
     url_list = []
     availabe_count = 0
     unavailabe_count = 0
     for item in data:
-        url_list.append(int(item[8]))
+        url_list.append(int(item))
     for item in url_list:
-        if item == 200:
-            availabe_count += 1
-        else:
+        if item >= 400:
             unavailabe_count += 1
+        else:
+            availabe_count += 1
     total_count = len(url_list)
     availabe_rate = float(availabe_count)/total_count
     unavailabe_rate = float(unavailabe_count)/total_count
