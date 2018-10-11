@@ -11,9 +11,6 @@ def load_file_path(file_name):
     return path.join(father_path,file_path)
 
 
-file_path = load_file_path(file_name)
-
-
 def open_file(file_path):
     total_list = []
     f = open(file_path,'r')
@@ -69,9 +66,10 @@ def web_availabe_rate(file_path):
     return availabe_rate,unavailabe_rate
 
 
-def main(file_path):
+def main():
+    file_path = load_file_path(file_name)
     calculate_pv_uv(file_path)
     top_resource(file_path, 5)
     web_availabe_rate(file_path)
 
-main(file_path)
+main()
