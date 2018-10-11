@@ -25,9 +25,6 @@ def open_file(file_path):
     return total_list
 
 
-data = open_file(file_path)
-
-
 def calculate_pv_uv(file_path):
     data = open_file(file_path)
     pv = [item[0] for item in data]
@@ -40,7 +37,7 @@ def top_resource(file_path,num):
     resource_dict = {}
     resource_total = []
     for i in range(len(data)):
-        resource_single = [x for x in data[i][6].split('/') if x != '']
+        resource_single = filter(None, data[i][6].split('/'))
         if resource_single:
             resource_total.append(resource_single[0])
     for item in set(resource_total):
