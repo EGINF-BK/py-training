@@ -3,7 +3,6 @@ homework/
 Knowledge_Sharing/
 
 *.txt
-*.py[cod]
 *.so
 *.egg
 *.egg-info
