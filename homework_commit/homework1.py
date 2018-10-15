@@ -2,20 +2,21 @@
 from os import path
 
 file_name = 'access.log.txt'
-current_name = 'homework1'
+dir_name = 'homework'
 
-def load_file_path(file_name):
-    current_path = path.abspath(current_name)
-    father_path = path.abspath(path.dirname(current_path)+path.sep+'..')
-    return path.join(father_path,'homework',file_name)
+def load_file_path(dir_name,file_name):
+    father_dir_path = path.abspath(path.dirname(__file__)+path.sep+'..')
+    return  path.join(father_dir_path,dir_name,file_name)
 
 
 def open_file(file_path,n):
     total_list = []
-    f = open(file_path,'r')
-    with open(file_path ,'r') as f:
-        for line in f.readlines():
-            total_list.append(line.strip('\n').split()[n])
+    try:
+        with open(file_path ,'r') as f:
+            for line in f.readlines():
+                total_list.append(line.strip('\n').split()[n])
+    except:
+        print file_name+'Not Found'
     return total_list
 
 
@@ -64,9 +65,10 @@ def web_availabe_rate(file_path):
 
 
 def main():
-    file_path = load_file_path(file_name)
+    file_path = load_file_path(dir_name,file_name)
     calculate_pv_uv(file_path)
     top_resource(file_path, 5)
     web_availabe_rate(file_path)
 
-main()
+if __name__ == '__main__':
+    main()
